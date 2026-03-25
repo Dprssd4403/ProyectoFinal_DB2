@@ -4,8 +4,7 @@ import { Explorador } from './pages/explorador/explorador';
 import { Tendencias } from './pages/tendencias/tendencias';
 
 export const routes: Routes = [
-    { path: 'inicio', component: Home },
+    { path: '', component: Home },
     { path: 'tendencias', component: Tendencias },
     { path: 'explorador', component: Explorador },
-    { path: '', redirectTo: '/inicio', pathMatch: 'full' }
 ];
