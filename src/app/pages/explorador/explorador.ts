@@ -8,67 +8,102 @@ import ChartsEmbedSDK from '@mongodb-js/charts-embed-dom';
   styleUrl: './explorador.css',
 })
 export class Explorador implements OnInit {
+  // Configuración del SDK con tu URL base de MongoDB Atlas
   private sdk = new ChartsEmbedSDK({
     baseUrl: 'https://charts.mongodb.com/charts-proyectofinal-ncownrz',
   });
 
-  // Chart 1: Distribución de Estrenos -> FILTRO POR AÑO
-  // Corregido ID: 1dede...
-  public chartLanzamientos = this.sdk.createChart({
-    chartId: '615afb20-2ea2-4c17-8630-6a7ec6438cf3',
-  });
-
-  // Chart 2: Análisis de Impacto -> FILTRO POR GÉNERO
-  // Corregido ID: 615af...
+  // Gráfico 1: Análisis de Impacto (Géneros - Color Naranja)
   public chartImpacto = this.sdk.createChart({
     chartId: '1dede645-5e22-4b88-a90f-ecc791caeacc',
   });
 
+  // Gráfico 2: Distribución de Estrenos (Años - Color Morado)
+  public chartLanzamientos = this.sdk.createChart({
+    chartId: '615afb20-2ea2-4c17-8630-6a7ec6438cf3',
+  });
+
   async ngOnInit() {
     try {
-      // Renderizamos en los contenedores correspondientes
-      await this.chartLanzamientos.render(document.getElementById('chart-lanzamientos')!);
-      await this.chartImpacto.render(document.getElementById('chart-impacto')!);
+      // Renderizamos ambos gráficos en sus contenedores HTML
+      await Promise.all([
+        this.chartImpacto.render(document.getElementById('chart-impacto')!),
+        this.chartLanzamientos.render(document.getElementById('chart-lanzamientos')!)
+      ]);
+      console.log('Charts cargados exitosamente con los datos reales');
     } catch (err) {
-      console.error('Error al cargar charts:', err);
+      console.error('Error crítico al renderizar los charts:', err);
     }
   }
 
-  // Filtro de Año para el primer gráfico (Lanzamientos)
-  async filtrarLanzamientosPorAnio(event: any) {
-    const valor = event.target.value;
-    console.log("Filtrando lanzamientos por año:", valor);
-
-    if (valor === 'TODOS') {
-      await this.chartLanzamientos.setFilter({});
-    } else {
-      const anioNum = parseInt(valor);
-      // Ajuste de filtro flexible por si el campo es 'year' o 'anio'
-      await this.chartLanzamientos.setFilter({ 
-        $or: [ { "year": anioNum }, { "anio": anioNum } ] 
-      });
-    }
-  }
-
-  // Filtro de Género para el segundo gráfico (Impacto)
+  /**
+   * Filtro para el Chart de Impacto (Géneros)
+   * Maneja las cadenas exactas como "country, pop, indie, folk"
+   */
   async filtrarImpactoPorGenero(event: any) {
-    const genero = event.target.value;
-    console.log("Filtrando impacto por género:", genero);
+    const generoSeleccionado = event.target.value;
+    console.log("Filtrando Género:", generoSeleccionado);
 
-    if (genero === 'TODOS') {
-      await this.chartImpacto.setFilter({});
-    } else {
-      // Ajuste de filtro flexible por si el campo es 'genre' o 'genero'
-      await this.chartImpacto.setFilter({ 
-        $or: [ { "genre": genero }, { "genero": genero } ] 
-      });
+    try {
+      if (generoSeleccionado === 'TODOS') {
+        // Limpiar filtro
+        await this.chartImpacto.setFilter({});
+      } else {
+        /**
+         * Aplicamos el filtro al campo 'artist_genres'. 
+         * Usamos el valor exacto del <option> del HTML.
+         */
+        await this.chartImpacto.setFilter({ 
+          "artist_genres": generoSeleccionado 
+        });
+      }
+    } catch (err) {
+      console.error("Fallo al filtrar impacto:", err);
     }
   }
 
-  public refrescarLanzamientos() {
+  /**
+   * Filtro para el Chart de Lanzamientos (Años)
+   * Convierte el año a número para la consulta
+   */
+  async filtrarLanzamientosPorAnio(event: any) {
+    const anioSeleccionado = event.target.value;
+    console.log("Filtrando Año:", anioSeleccionado);
+
+    try {
+      if (anioSeleccionado === 'TODOS') {
+        await this.chartLanzamientos.setFilter({});
+      } else {
+        const anioNum = parseInt(anioSeleccionado);
+        
+        /**
+         * Filtro de seguridad:
+         * Buscamos por el campo numérico 'year' o 'anio'.
+         * También probamos buscar el año como texto dentro de la fecha completa
+         * por si el campo 'album_release_date' es un String.
+         */
+        await this.chartLanzamientos.setFilter({
+          $or: [
+            { "year": anioNum },
+            { "anio": anioNum },
+            { "album_release_date": { $regex: anioSeleccionado } }
+          ]
+        });
+      }
+    } catch (err) {
+      console.error("Fallo al filtrar lanzamientos:", err);
+    }
+  }
+
+  /**
+   * Función para refrescar manualmente los datos
+   */
+  public refrescarDashboard() {
     Promise.all([
-      this.chartLanzamientos.refresh(), 
-      this.chartImpacto.refresh()
-    ]).then(() => console.log("Charts actualizados"));
+      this.chartImpacto.refresh(),
+      this.chartLanzamientos.refresh()
+    ]).then(() => {
+      console.log("Dashboard actualizado");
+    }).catch(err => console.error("Error al refrescar:", err));
   }
 }

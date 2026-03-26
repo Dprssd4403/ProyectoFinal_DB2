@@ -1,29 +1,24 @@
-<main class="grid grid-cols-1 lg:grid-cols-2 gap-10 p-10">
-    
-
+<main class="grid grid-cols-1 lg:grid-cols-2 gap-10 p-10 bg-[#FCFAF7]">
+  
+  <!-- CHART 1: ÁLBUMS POR GÉNERO (NARANJA) -->
   <div class="bg-white p-6 rounded-[2rem] shadow-xl border border-amber-100">
     <div class="flex justify-between items-center mb-6">
-      <h3 class="text-xs font-black uppercase tracking-widest text-slate-800">🎸 Impacto</h3>
-      <select (change)="filtrarImpactoPorGenero($event)" class="bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold rounded-lg px-3 py-2">
-        <option value="TODOS">Todos los Géneros</option>
-        <option value="pop">Pop</option>
-        <option value="rock">Rock</option>
-        <option value="rap">Rap</option>
-        <option value="k-pop">K-Pop</option>
-      </select>
+      <div>
+        <h3 class="text-xs font-black uppercase tracking-widest text-slate-800 italic">🎸 Géneros más Populares</h3>
+        <p class="text-[10px] text-slate-400 font-medium font-mono">Total Registros: 5,920</p>
+      </div>
+     
     </div>
     <div id="chart-impacto" style="height: 480px; width: 100%;"></div>
   </div>
 
-   <div class="bg-white p-6 rounded-[2rem] shadow-xl border border-amber-100">
+  <!-- CHART 2: LANZAMIENTOS POR AÑO (MORADO) -->
+  <div class="bg-white p-6 rounded-[2rem] shadow-xl border border-amber-100">
     <div class="flex justify-between items-center mb-6">
-      <h3 class="text-xs font-black uppercase tracking-widest text-slate-800">📅 Estrenos</h3>
-      <select (change)="filtrarLanzamientosPorAnio($event)" class="bg-amber-50 border border-amber-200 text-amber-900 text-xs font-bold rounded-lg px-3 py-2">
-        <option value="TODOS">Todos los Años</option>
-        <option value="2026">2026</option>
-        <option value="2025">2025</option>
-        <option value="2024">2024</option>
-      </select>
+      <div>
+        <h3 class="text-xs font-black uppercase tracking-widest text-slate-800 italic">📅 Histórico de Estrenos</h3>
+        <p class="text-[10px] text-slate-400 font-medium italic">Selecciona un año específico</p>
+      </div>
     </div>
     <div id="chart-lanzamientos" style="height: 480px; width: 100%;"></div>
   </div>
