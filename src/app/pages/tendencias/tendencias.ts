@@ -15,12 +15,12 @@ export class Tendencias implements OnInit {
 
   // Primer Chart: Top 10 Artistas
   public chart1 = this.sdk.createChart({
-    chartId: 'f1bc31fe-46e2-46c8-be84-c0e128215793',
+    chartId: '71c854ba-2faa-4cfd-af5e-3913cfc862b5',
   });
 
   // Segundo Chart: El nuevo ID que proporcionaste
   public chart2 = this.sdk.createChart({
-    chartId: '4893399a-295f-4b3a-ad33-e6e0be920b54',
+    chartId: '0917ce2d-3913-4a7c-9973-8b2b0f05ed2b',
   });
 
   async ngOnInit() {
