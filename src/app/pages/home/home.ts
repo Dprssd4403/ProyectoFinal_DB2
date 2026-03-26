@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
+import { DashboardComponent } from "../../components/dashboard-component/dashboard-component";
+
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [DashboardComponent],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })

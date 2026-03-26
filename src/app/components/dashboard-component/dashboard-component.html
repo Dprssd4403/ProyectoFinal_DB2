@@ -1,0 +1,52 @@
+<br>
+<br>
+<br>
+
+<div class="p-6 bg-gray-100 min-h-screen">
+  <!-- Título principal -->
+  <h1 class="text-2xl font-bold text-gray-800 mb-6">Panel de Control: Géneros Musicales</h1>
+
+  <!-- Contenedor del Selector de Géneros -->
+  <div class="mb-8 p-5 bg-white rounded-xl shadow-md border border-gray-200">
+    <label for="filtroGenero" class="block mb-2 text-sm font-bold text-indigo-900 uppercase tracking-wide">
+      Selecciona un Género para filtrar los datos:
+    </label>
+    
+    <div class="flex flex-col md:flex-row gap-4">
+      <select 
+        id="filtroGenero" 
+        (change)="aplicarFiltro($event)"
+        class="w-full md:w-96 p-2.5 bg-gray-50 border border-indigo-200 text-gray-900 text-sm rounded-lg focus:ring-indigo-500 focus:border-indigo-500 shadow-sm transition-all">
+        
+        <option value="TODOS">-- Todos los Géneros --</option>
+        
+        <!-- Valores mapeados exactamente desde tu gráfico -->
+        <option value="pop">Pop</option>
+        <option value="country, pop, indie, folk">Country, Pop, Indie, Folk</option>
+        <option value="soundtrack">Soundtrack</option>
+        <option value="soft pop">Soft Pop</option>
+        <option value="rap">Rap</option>
+        <option value="alternative pop, indie pop">Alternative Pop, Indie Pop</option>
+        <option value="k-pop">K-Pop</option>
+        <option value="dark r&b">Dark R&B</option>
+        
+      </select>
+
+      <button 
+        (click)="refrescarGrafico()" 
+        class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold px-6 py-2.5 rounded-lg transition-colors shadow-lg flex items-center justify-center">
+        <span>🔄 Actualizar Gráficos</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 gap-10">
+    
+    <div class="bg-white p-6 rounded-2xl shadow-lg border border-gray-100">
+      <h3 class="text-md font-semibold text-gray-500 mb-4 flex items-center">
+        <span class="w-2 h-2 bg-green-500 rounded-full mr-2"></span> Gráfico de Popularidad
+      </h3>
+      <div id="chart" style="height: 450px; width: 100%;"></div>
+    </div>
+  </div>
+</div>
