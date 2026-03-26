@@ -1,25 +1,87 @@
-<main class="grid grid-cols-1 lg:grid-cols-2 gap-10 p-10 bg-[#FCFAF7]">
-  
+<div class="min-h-screen bg-[#FCFAF7] p-8 md:p-12 font-sans text-slate-800 selection:bg-amber-200">
 
-  <div class="bg-white p-6 rounded-[2rem] shadow-xl border border-amber-100">
-    <div class="flex justify-between items-center mb-6">
-      <div>
-        <h3 class="text-xs font-black uppercase tracking-widest text-slate-800 italic">🎸 Géneros más Populares</h3>
-        <p class="text-[10px] text-slate-400 font-medium font-mono">Total Registros: 5,920</p>
+  <header class="mb-10 flex flex-col md:flex-row md:items-end justify-between gap-6">
+    <div>
+      <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-100/50 border border-amber-200 rounded-full mb-4">
+        <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+        <span class="text-[9px] font-black text-amber-700 uppercase tracking-widest">Dashboard Activo</span>
       </div>
-     
+      <h1 class="text-4xl md:text-5xl font-black tracking-tighter text-slate-900 mb-3">
+        Explorador <span class="italic text-amber-500 decoration-amber-200 underline decoration-4 underline-offset-4">Tonecu.</span>
+      </h1>
+      <p class="text-slate-500 font-medium max-w-xl text-sm leading-relaxed">
+        Visualiza y analiza el comportamiento de tu biblioteca musical. Interactúa con los gráficos para descubrir tendencias.
+      </p>
     </div>
-    <div id="chart-impacto" style="height: 480px; width: 100%;"></div>
-  </div>
+    
+  </header>
 
-
-  <div class="bg-white p-6 rounded-[2rem] shadow-xl border border-amber-100">
-    <div class="flex justify-between items-center mb-6">
+  <section class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+    
+    <div class="bg-white p-6 rounded-[2rem] shadow-xl shadow-amber-900/5 border border-amber-100 flex items-center gap-5 hover:-translate-y-1 transition-transform">
+      <div class="w-14 h-14 rounded-full bg-amber-50 flex items-center justify-center text-2xl border border-amber-100">🎵</div>
       <div>
-        <h3 class="text-xs font-black uppercase tracking-widest text-slate-800 italic">📅 Histórico de Estrenos</h3>
-        <p class="text-[10px] text-slate-400 font-medium italic">Selecciona un año específico</p>
+        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Total Pistas</p>
+        <p class="text-3xl font-black text-slate-800 italic">8,582</p>
       </div>
     </div>
-    <div id="chart-lanzamientos" style="height: 480px; width: 100%;"></div>
-  </div>
-</main>
+
+    <div class="bg-white p-6 rounded-[2rem] shadow-xl shadow-amber-900/5 border border-amber-100 flex items-center gap-5 hover:-translate-y-1 transition-transform">
+      <div class="w-14 h-14 rounded-full bg-slate-50 flex items-center justify-center text-2xl border border-slate-100">🎤</div>
+      <div>
+        <p class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Total Artistas</p>
+        <p class="text-3xl font-black text-slate-800 italic">3,140</p>
+      </div>
+    </div>
+
+    <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-6 rounded-[2rem] shadow-xl shadow-slate-900/20 border border-slate-700 flex items-center gap-5 hover:-translate-y-1 transition-transform">
+      <div class="w-14 h-14 rounded-full bg-slate-700/50 flex items-center justify-center text-2xl border border-slate-600">🔥</div>
+      <div>
+        <p class="text-[10px] text-amber-400 font-bold uppercase tracking-widest mb-1">Top Género</p>
+        <p class="text-3xl font-black text-white italic">Pop</p>
+      </div>
+    </div>
+
+  </section>
+
+  <main class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+    
+    <div class="bg-white p-8 rounded-[2rem] shadow-2xl shadow-amber-900/5 border border-amber-100/60 flex flex-col">
+      <div class="flex justify-between items-start mb-8">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-amber-50 flex items-center justify-center border border-amber-100">
+            <span class="text-xl">🎸</span>
+          </div>
+          <div>
+            <h3 class="text-xs font-black uppercase tracking-widest text-slate-800 italic">Géneros más Populares</h3>
+            <p class="text-[10px] text-slate-400 font-medium font-mono mt-1 tracking-wider">TOTAL REGISTROS: 5,920</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="w-full bg-slate-50/30 rounded-[1.5rem] border border-slate-50 overflow-hidden">
+        <div id="chart-impacto" style="height: 480px; width: 100%;"></div>
+      </div>
+    </div>
+
+    <div class="bg-white p-8 rounded-[2rem] shadow-2xl shadow-amber-900/5 border border-amber-100/60 flex flex-col">
+      <div class="flex justify-between items-start mb-8">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-full bg-slate-50 flex items-center justify-center border border-slate-100">
+            <span class="text-xl">📅</span>
+          </div>
+          <div>
+            <h3 class="text-xs font-black uppercase tracking-widest text-slate-800 italic">Histórico de Estrenos</h3>
+            <p class="text-[10px] text-slate-400 font-medium italic mt-1">Selecciona un año específico</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="w-full bg-slate-50/30 rounded-[1.5rem] border border-slate-50 overflow-hidden">
+        <div id="chart-lanzamientos" style="height: 480px; width: 100%;"></div>
+      </div>
+    </div>
+
+  </main>
+
+</div>

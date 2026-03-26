@@ -5,56 +5,155 @@
       <h1 class="text-4xl font-black text-slate-900 tracking-tighter uppercase">
         Análisis de <span class="text-amber-500">Tendencias</span>
       </h1>
-      <p class="text-slate-500 text-sm font-medium mt-1 tracking-wide italic">Métricas de popularidad y alcance </p>
+      <p class="text-slate-500 text-sm font-medium mt-1 tracking-wide italic">Métricas de popularidad y alcance global</p>
     </div>
-    <button (click)="refrescarGraficos()" class="bg-white border-2 border-amber-100 text-amber-600 p-3 rounded-2xl shadow-sm hover:border-amber-400 active:scale-95 transition-all">
-      🔄
-    </button>
+    <div class="flex items-center gap-4">
+      <div class="hidden lg:block text-right">
+        <p class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Última actualización</p>
+        <p class="text-xs font-bold text-slate-600">Hace 3 minutos</p>
+      </div>
+      <button (click)="refrescarGraficos()" class="bg-white border-2 border-amber-100 text-amber-600 p-3 rounded-2xl shadow-sm hover:border-amber-400 active:scale-95 transition-all shadow-amber-200/50">
+        🔄
+      </button>
+    </div>
   </header>
 
+  <section class="mb-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+    <div class="lg:col-span-2 relative h-[400px] rounded-[3rem] overflow-hidden shadow-2xl group">
+      <img src="https://www.bbva.com/wp-content/uploads/2020/05/festival2.jpg" 
+           class="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Concert">
+      <div class="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/40 to-transparent p-12 flex flex-col justify-end">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="bg-amber-500 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">Global Artist Focus</span>
+          <span class="text-white/80 text-xs font-bold italic">Update: 2026 Trend Cycle</span>
+        </div>
+        <h2 class="text-white text-6xl font-black tracking-tighter leading-none mb-4">REVOLUCIÓN <br><span class="text-amber-400">SONORA.</span></h2>
+        <p class="text-white/70 text-sm font-medium max-w-md leading-relaxed">Explora cómo los algoritmos de streaming están redefiniendo el éxito comercial en la industria independiente.</p>
+      </div>
+    </div>
+
+    <div class="flex flex-col gap-6">
+      <div class="bg-slate-900 rounded-[2.5rem] p-8 flex-grow shadow-xl border border-slate-800 relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-amber-500/10 rounded-full -mr-16 -mt-16 blur-2xl"></div>
+        <h4 class="text-amber-500 text-[10px] font-black uppercase tracking-[0.2em] mb-6">Live Streaming Monitor</h4>
+        <div class="flex items-end gap-1 mb-6 h-20">
+          <div class="flex-grow bg-amber-500/20 h-[40%] rounded-t-lg animate-[pulse_2s_infinite]"></div>
+          <div class="flex-grow bg-amber-500/40 h-[70%] rounded-t-lg animate-[pulse_1.5s_infinite]"></div>
+          <div class="flex-grow bg-amber-500 h-[100%] rounded-t-lg"></div>
+          <div class="flex-grow bg-amber-500/60 h-[85%] rounded-t-lg animate-[pulse_1.8s_infinite]"></div>
+        </div>
+        <div class="flex justify-between items-center">
+          <div>
+            <p class="text-white text-3xl font-black">42.8K</p>
+            <p class="text-slate-400 text-[10px] font-bold uppercase mt-1">Usuarios Activos</p>
+          </div>
+          <span class="flex h-3 w-3 bg-red-500 rounded-full animate-ping"></span>
+        </div>
+      </div>
+      
+      <div class="bg-white rounded-[2.5rem] p-8 border border-amber-100 shadow-sm flex items-center justify-between">
+        <div>
+          <p class="text-slate-400 text-[10px] font-black uppercase tracking-widest mb-1">Crecimiento Promedio</p>
+          <p class="text-slate-900 text-3xl font-black">+18.4%</p>
+        </div>
+        <div class="w-14 h-14 bg-emerald-50 rounded-2xl flex items-center justify-center">
+          <svg class="w-8 h-8 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"></path></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mb-12">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-xs font-black text-amber-800 uppercase tracking-[0.3em]">Directorio de Artistas Top</h3>
+      <span class="text-[10px] font-bold text-slate-400 uppercase">Desliza para ver más →</span>
+    </div>
+    
+    <div class="flex overflow-x-auto pb-6 gap-6 no-scrollbar">
+      <div *ngFor="let artist of ['Taylor', 'Weeknd', 'Bad Bunny', 'Billie', 'Dua Lipa', 'Drake', 'Rosalia']" class="flex-none w-32 group cursor-pointer text-center">
+        <div class="relative aspect-square rounded-[2rem] overflow-hidden mb-3 border-4 border-white shadow-md group-hover:border-amber-400 transition-all duration-300">
+          <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=200" class="w-full h-full object-cover grayscale group-hover:grayscale-0" alt="Artist">
+          <div class="absolute inset-0 bg-amber-500/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </div>
+        <span class="text-[11px] font-black text-slate-800 uppercase tracking-tighter">{{artist}}</span>
+      </div>
+    </div>
+  </div>
+
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mb-10">
-      <div class="bg-white p-2 rounded-[2.5rem] shadow-2xl border border-amber-50 overflow-hidden shadow-amber-900/5 transition-all hover:border-amber-200">
-        <div class="px-8 py-5 border-b border-amber-50 bg-gradient-to-r from-white to-amber-50/30">
-          <h2 class="text-sm font-bold text-slate-800 uppercase tracking-tighter flex items-center gap-2">
+    <div class="bg-white p-2 rounded-[2.5rem] shadow-2xl border border-amber-50 overflow-hidden shadow-amber-900/5 transition-all hover:border-amber-200">
+      <div class="px-8 py-6 border-b border-amber-50 bg-gradient-to-r from-white to-amber-50/30 flex justify-between items-center">
+        <div>
+          <h2 class="text-sm font-black text-slate-800 uppercase tracking-tighter flex items-center gap-2">
+            <span class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
             Top 10 Álbumes Spotify
           </h2>
         </div>
-        <div class="p-6 bg-white">
-          <div id="chart-tendencias" style="height: 500px; width: 100%;"></div>
-        </div>
       </div>
-
-
-
-    <div class="flex flex-col gap-4">
-      <div class="bg-white p-6 rounded-[2rem] border border-amber-100 shadow-sm">
-        <label class="block mb-2 text-xs font-black text-amber-800 uppercase tracking-widest">Seleccionar Artista:</label>
-        <select (change)="aplicarFiltroChart2($event)" class="w-full p-3 bg-amber-50/30 border-2 border-amber-100 text-slate-700 text-sm font-bold rounded-2xl outline-none cursor-pointer">
-          <option value="TODOS">-- Todos los Artistas --</option>
-          <option value="Taylor Swift">Taylor Swift</option>
-          <option value="Billie Eilish">Billie Eilish</option>
-          <option value="The Weeknd">The Weeknd</option>
-          <option value="Ariana Grande">Ariana Grande</option>
-          <option value="Drake">Drake</option>
-          <option value="Bad Bunny">Bad Bunny</option>
-          <option value="Justin Bieber">Justin Bieber</option>
-          <option value="Bruno Mars">Bruno Mars</option>
-          <option value="Rihanna">Rihanna</option>
-          <option value="Sabrina Carpenter">Sabrina Carpenter</option>
-        </select>
-      </div>
-
-      <div class="bg-white p-2 rounded-[2.5rem] shadow-2xl border border-amber-50 overflow-hidden shadow-amber-900/5 transition-all hover:border-amber-200">
-        <div class="px-8 py-5 border-b border-amber-50 bg-gradient-to-r from-white to-amber-50/30">
-          <h2 class="text-sm font-bold text-slate-800 uppercase tracking-tighter flex items-center gap-2">
-            Métricas de Seguidores
-          </h2>
-        </div>
-        <div class="p-6 bg-white">
-          <div id="chart-seguidores" style="height: 500px; width: 100%;"></div>
-        </div>
+      <div class="p-6 bg-white">
+        <div id="chart-tendencias" style="height: 500px; width: 100%;"></div>
       </div>
     </div>
 
+    <div class="flex flex-col gap-6">
+      <div class="bg-white p-8 rounded-[2.5rem] border-2 border-amber-100 shadow-xl shadow-amber-900/5 relative overflow-hidden">
+        <label class="block mb-3 text-xs font-black text-amber-800 uppercase tracking-widest">Seleccionar Artista del Catálogo:</label>
+        <select (change)="aplicarFiltroChart2($event)" class="w-full p-4 bg-amber-50/50 border-2 border-amber-200 text-slate-800 text-sm font-bold rounded-2xl outline-none cursor-pointer focus:border-amber-500 transition-all appearance-none shadow-inner">
+          <option value="TODOS">-- Todos los Artistas (Vista Global) --</option>
+          <optgroup label="Pop / Mainstream">
+            <option value="Taylor Swift">Taylor Swift</option>
+            <option value="Billie Eilish">Billie Eilish</option>
+            <option value="Ariana Grande">Ariana Grande</option>
+            <option value="Justin Bieber">Justin Bieber</option>
+            <option value="Sabrina Carpenter">Sabrina Carpenter</option>
+          </optgroup>
+          <optgroup label="R&B / Hip-Hop">
+            <option value="The Weeknd">The Weeknd</option>
+            <option value="Drake">Drake</option>
+            <option value="Rihanna">Rihanna</option>
+          </optgroup>
+          <optgroup label="Latino / Urbano">
+            <option value="Bad Bunny">Bad Bunny</option>
+          </optgroup>
+          <optgroup label="Otros">
+            <option value="Bruno Mars">Bruno Mars</option>
+          </select>
+      </div>
+
+      <div class="bg-white p-2 rounded-[2.5rem] shadow-2xl border border-amber-50 overflow-hidden shadow-amber-900/5 transition-all hover:border-amber-200 flex-grow">
+        <div class="px-8 py-5 border-b border-amber-50 bg-gradient-to-r from-white to-amber-50/30">
+          <h2 class="text-sm font-black text-slate-800 uppercase tracking-tighter flex items-center gap-2">
+            Métricas de Seguidores & Engagement
+          </h2>
+        </div>
+        <div class="p-6 bg-white">
+          <div id="chart-seguidores" style="height: 440px; width: 100%;"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <div class="bg-amber-500 rounded-[2.5rem] p-8 text-white flex flex-col justify-between shadow-xl shadow-amber-500/20">
+        <div>
+            <p class="text-[10px] font-black uppercase tracking-widest opacity-80 mb-2">Próximo Hito</p>
+            <h4 class="text-2xl font-black leading-tight mb-4">The Weeknd cerca de los 120M de oyentes</h4>
+        </div>
+        <div class="flex items-center gap-2">
+            <div class="w-full bg-white/20 h-2 rounded-full overflow-hidden">
+                <div class="bg-white h-full" style="width: 85%"></div>
+            </div>
+            <span class="text-[10px] font-black">85%</span>
+        </div>
+    </div>
+
+    <div class="bg-white rounded-[2.5rem] p-8 border border-amber-100 shadow-sm md:col-span-2">
+        <h4 class="text-xs font-black text-slate-800 uppercase tracking-widest mb-4">Análisis de Mercado Sugerido</h4>
+        <div class="flex flex-wrap gap-2">
+            <span class="px-4 py-2 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-xl border border-slate-200">#ViralOnTikTok</span>
+            <span class="px-4 py-2 bg-slate-100 text-slate-600 text-[10px] font-bold rounded-xl border border-slate-200">#Grammy2026Predictions</span>
+            <span class="px-4 py-2 bg-amber-100 text-amber-700 text-[10px] font-black rounded-xl border border-amber-200 uppercase tracking-tighter">Live Concerts Trend</span>
+        </div>
+    </div>
   </div>
 </div>
